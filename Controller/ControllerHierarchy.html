@@ -1,0 +1,40 @@
+<!doctype html>
+<html ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello World</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.6/angular.js"></script>
+</head>
+<body>
+
+<div ng-controller="ParentController">
+
+    <h4>ParentController</h4>{{person}}
+
+    <div ng-controller="ChildController">
+        <h4>ChildController</h4>{{person}}
+        <br/>
+        <button ng-click="sayHello()">Say Hello</button>
+    </div>
+
+</div>
+
+<script>
+    var app = angular.module('myApp', []);
+    app.controller('ParentController', ['$scope', function($scope) {
+        $scope.person = {
+            greeted: false
+        }
+    }]);
+    app.controller('ChildController', ['$scope', function($scope) {
+        $scope.person = {
+            greeted: true
+        };
+        $scope.sayHello = function() {
+                $scope.person.name = 'xiaoming';
+                $scope.person.greeted = false;
+            }
+    }])
+</script>
+</body>
+</html>
