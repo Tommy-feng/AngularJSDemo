@@ -1,0 +1,56 @@
+<!doctype html>
+<html ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Filter</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.6/angular.js"></script>
+</head>
+<body>
+<div ng-controller="FilterController">
+    <h3>currency：{{ account | currency:"￥"}}</h3>
+    <h3>date: {{today | date: 'yyyy-MM-dd'}}</h3>
+    <h3>filter: {{ words | filter:'e' }}</h3>
+    <h3>json: {{ person | json }}</h3>
+    <h3>limitTo: {{ test | limitTo:3 }}</h3>
+    <h3>lowercase: Hello, {{ name | lowercase }}!</h3>
+    <h3>number: {{num | number:2}}</h3>
+    <h3>uppercase: Hello, {{ name | uppercase }}!</h3>
+    <h3>orderBy：{{ array | orderBy: 'name' }}</h3>
+
+
+    <h3>custom filter: {{ 'we will rock you!' | capitalize}}</h3>
+</div>
+</div>
+
+
+<script>
+    var app = angular.module('myApp', []);
+    app.controller('FilterController', ['$scope', function($scope) {
+                $scope.account = '123';
+                $scope.today = new Date();
+                $scope.words = ['Ari', 'Lerner', 'Likes', 'To', 'Eat', 'Pizza'];
+                $scope.person = {'name': 'Ari', 'City': 'San Francisco'};
+                $scope.test = 'San Francisco is very cloudy';
+                $scope.name = 'FengZheQi';
+                $scope.num = 123.223;
+                $scope.array =[{
+                                'name': 'Ari',
+                                'status': 'awake'
+                            }, {
+                                'name': 'Q',
+                                'status': 'sleeping'
+                            }, {
+                                'name': 'Nate',
+                                'status': 'awake'
+                            }];
+            }]);
+    app.filter('capitalize', function() {
+            return function(input) {
+                if (input)
+                    return input[0].toUpperCase() +
+                            input.slice( 1 );
+            }
+        });
+</script>
+</body>
+</html>
