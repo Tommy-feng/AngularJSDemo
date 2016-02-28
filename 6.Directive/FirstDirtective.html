@@ -1,0 +1,23 @@
+<!doctype html>
+<html ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Directive</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.6/angular.js"></script>
+</head>
+<body>
+
+<div my-directive></div>
+
+<script>
+    var app = angular.module('myApp', []);
+    app.directive('myDirective', function() {
+        return {
+            restrict: 'EAC',
+            replace: true,
+            template: '<a href="http://baidu.com">Click me</a>'
+        }
+    });
+</script>
+</body>
+</html>
